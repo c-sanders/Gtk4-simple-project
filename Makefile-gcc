@@ -1,0 +1,240 @@
+# Sample makefile
+
+
+# ======================================
+# Settings and flags associated with :
+#
+#   - Compilation process
+# ======================================
+
+compiler=c:\msys64\mingw64\bin\g++.exe
+
+compile_flags=-g \
+              -Wall \
+              -c
+
+
+# ----------------------------
+# Locations of Header files
+# ----------------------------
+
+dir_gtk=c:\msys64\mingw64\include\gtk-4.0
+dir_glib=c:\msys64\mingw64\include\glib-2.0
+dir_glib_include=c:\msys64\mingw64\lib\glib-2.0\include
+dir_cairo=c:\msys64\mingw64\include\cairo
+dir_pango=c:\msys64\mingw64\include\pango-1.0
+dir_graphene=c:\msys64\mingw64\include\graphene-1.0
+dir_graphene_include=c:\msys64\mingw64\lib\graphene-1.0\include
+dir_harfbuzz=c:\msys64\mingw64\include\harfbuzz
+dir_gdk_pixbuf=c:\msys64\mingw64\include\gdk-pixbuf-2.0
+dir_json=c:\users\craig\json-develop\include
+dir_boost=c:\users\craig\boost_1_82_0
+
+
+# ----------------------------
+# Include flags
+# ----------------------------
+
+include_dirs=-I..\include \
+             -I$(dir_gtk) \
+             -I$(dir_glib) \
+             -I$(dir_glib_include) \
+             -I$(dir_cairo) \
+             -I$(dir_pango) \
+             -I$(dir_graphene) \
+             -I$(dir_graphene_include) \
+             -I$(dir_harfbuzz) \
+             -I$(dir_gdk_pixbuf) \
+             -I$(dir_json) \
+             -I$(dir_boost)
+
+
+# ======================================
+# Settings and flags associated with :
+#
+#   - Linking process
+# ======================================
+# To get the flags, invoke the
+# following;
+#
+#   pkg-config --libs gtk4
+# ======================================
+
+linker=c:\msys64\mingw64\bin\g++.exe
+
+linker_flags=-g \
+             -Wall
+
+lib_gtk=c:\msys64\mingw64\lib\libgtk-4.dll.a
+lib_glib=c:\msys64\mingw64\lib\libglib-2.0.dll.a
+lib_cairo=c:\msys64\mingw64\lib\libcairo.dll.a
+lib_cairo_gobject=c:\msys64\mingw64\lib\libcairo-gobject.dll.a
+lib_pango=c:\msys64\mingw64\lib\libpango-1.0.dll.a
+lib_pango_win32=c:\msys64\mingw64\lib\libpangowin32-1.0.dll.a
+lib_pango_cairo=c:\msys64\mingw64\lib\libpangocairo-1.0.dll.a
+lib_graphene=c:\msys64\mingw64\lib\libgraphene-1.0.dll.a
+lib_harfbuzz=c:\msys64\mingw64\lib\libharfbuzz.dll.a
+# lib_pixbuf=c:\msys64\mingw64\lib\libharfbuzz.dll.a
+lib_gobject=c:\msys64\mingw64\lib\libgobject-2.0.dll.a
+lib_gio=c:\msys64\mingw64\lib\libgio-2.0.dll.a
+lib_boost_container=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_container-vc143-mt-s-x64-1_82.lib
+lib_boost_json=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_json-vc143-mt-s-x64-1_82.lib
+
+
+# ----------------------------
+# Link flags
+# ----------------------------
+
+# Is the Gtk4 library file : c:\msys64\mingw64\bin\libgtk-4-1.dll
+
+link_dirs=-Lc:\msys64\mingw64\lib \
+          -Lc:\msys64\mingw64\bin \
+          -Lc:\users\craig\boost_1_82_0\stage\x64\lib
+
+link_libs=-lgtk-4-1 \
+          -lglib-2.0 \
+          -lcairo \
+          -lcairo-gobject \
+          -lpango-1.0 \
+          -lpangowin32-1.0 \
+          -lpangocairo-1.0 \
+          -lgraphene-1.0 \
+          -lharfbuzz \
+          -lgobject-2.0 \
+          -lgio-2.0 \
+          -lboost_container-vc143-mt-s-x64-1_82 \
+          -lboost_json-vc143-mt-s-x64-1_82
+
+link_flags_manual=$(link_dirs) \
+                  $(link_libs)
+
+link_flags_pkgconfig=-LC:/msys64/mingw64/bin/../lib \
+                     -lgtk-4 \
+                     -lpangowin32-1.0 \
+                     -lpangocairo-1.0 \
+                     -lpango-1.0 \
+                     -lharfbuzz \
+                     -lgdk_pixbuf-2.0 \
+                     -lcairo-gobject \
+                     -lcairo \
+                     -lgraphene-1.0 \
+                     -lgio-2.0 \
+                     -lgobject-2.0 \
+                     -lglib-2.0 \
+                     -lintl
+
+link_flags=$(link_flags_manual)
+
+
+# ======================================
+# File lists
+# ======================================
+
+InvokeBuilder_obj_files=InvokeBuilder.o \
+                        FileUtils.o
+
+SimpleGUI_obj_files=SimpleGUI.o \
+                    FileUtils.o
+
+GUI_obj_files=GUI.o \
+              CraigWindow.o \
+              CraigConfig.o
+
+
+# ======================================
+# Targets
+# ======================================
+
+all : GUI.exe
+
+# FileUtils.o : FileUtils.cpp
+#     $(compiler) $(compile_flags) $(include_dirs) FileUtils.cpp
+
+# SimpleGUI.o : SimpleGUI.cpp
+#     $(compiler) $(compile_flags) $(include_dirs) SimpleGUI.cpp
+
+# InvokeBuilder.o : InvokeBuilder.cpp
+#     $(compiler) $(compile_flags) $(include_dirs) InvokeBuilder.cpp
+ 
+# GUI.o : GUI.cpp
+#     $(compiler) $(compile_flags) $(include_dirs) GUI.cpp 
+
+# CraigWindow.o : CraigWindow.cpp
+#     $(compiler) $(compile_flags) $(include_dirs) CraigWindow.cpp
+
+# CraigConfig.o : CraigConfig.cpp
+#     $(compiler) $(compile_flags) $(include_dirs) CraigConfig.cpp
+
+
+.cpp.o :
+    $(compiler) $(compile_flags) $(include_dirs) $*.cpp
+
+
+InvokeBuilder.exe : $(InvokeBuilder_obj_files)
+    $(linker) \
+    $(link_flags) \
+    $(InvokeBuilder_obj_files) \
+    -o InvokeBuilder.exe
+
+SimpleGUI.exe : $(SimpleGUI_obj_files)
+    $(linker) \
+    -out:SimpleGUI.exe $(SimpleGUI_obj_files) $(link_flags)
+
+
+GUI.exe: $(GUI_obj_files)
+    $(link) -out:GUI.exe $(GUI_obj_files) $(link_flags)
+    @echo -
+    @echo -
+    @echo ================================================================================
+    @echo - Setting up the environment correctly
+    @echo - ------------------------------------
+    @echo -
+    @echo - If this Makefile target executed successfully, then it should have created a
+    @echo - binary executable program file which is called;
+    @echo -
+    @echo -   simple.exe
+    @echo -
+    @echo - It should be noted that if you attempt to invoke this binary executable
+    @echo - program file from the command line, then you first need to ensure that the
+    @echo - environment in which it is to be run, has been properly configured. You can
+    @echo - accomplish this from the command line by running the appropriate (32 bit or 64 
+    @echo - bit) vcvars batch file first. You might be able to find the appropriate file
+    @echo - in a location which similar to the following;
+    @echo -
+    @echo - c:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat
+    @echo -
+    @echo -
+    @echo - Locating any dependant library files
+    @echo - ------------------------------------
+    @echo =
+    @echo = If this Makefile target successfully creates a binary executable program file,
+    @echo = then the binary executable program file which it creates should contain one or
+    @echo = more dependencies on external library files. One of these dependencies will be
+    @echo = on the following dll (Dynamically Loaded Library) file;
+    @echo =
+    @echo =   libgtk-4.dll.a
+    @echo =
+    @echo = In order to be able to properly invoke this binary executable program file
+    @echo = from the command line, the environment needs to know where it can locate this
+    @echo = file. One way - albeit a naive one, to accomplish this, is to place a copy of
+    @echo = the dll file in the same folder which the binary executable program file
+    @echo = resides in.
+    @echo ================================================================================
+
+
+test:
+    @echo ================================================================================
+    @echo Locations of build tools
+    @echo ------------------------
+    @echo -
+    @echo cpp  = $(cpp)
+    @echo link = $(link)
+    @echo -
+    @echo -
+    @echo Various flags
+    @echo -------------
+    @echo -
+    @echo cppflags  = $(cppflags)
+    @echo -
+    @echo linkflags = $(linkflags)
+    @echo ================================================================================
