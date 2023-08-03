@@ -117,7 +117,7 @@ activate
 
         builder_p = gtk_builder_new_from_file
                     (
-                     "c:\\users\\craig\\Documents\\code\\simple\\xml\\ui\\simple.ui"
+                     "c:\\users\\craig\\Documents\\GitHub\\Gtk4-simple-project\\xml\\ui\\simple.ui"
                     );
     }
     else
@@ -126,7 +126,7 @@ activate
 
         readWholeFileIntoString
         (
-            "c:\\users\\craig\\Documents\\code\\simple\\xml\\ui\\simple.ui",
+            "c:\\users\\craig\\Documents\\GitHub\\Gtk4-simple-project\\xml\\ui\\simple.ui",
             &xmlString
         );
 
