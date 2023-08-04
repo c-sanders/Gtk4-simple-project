@@ -4,42 +4,77 @@
     <object class="GtkBox" id="top_box_layout">
         <requires lib="gtk" version="4.0" />
         <property name="orientation">vertical</property>
-
+		
         <!--
-          Button : 
+		  Frame around Entry : URL of filename
+		  -->
+		
+		<child>
+			<object class="GtkFrame" id="frame_1">
+                <property name="label">URL</property>
+		        <!--
+                  Entry : URL of filename 
+                  -->
+
+		        <child>
+					<object class="GtkEntry" id="entry_1">
+						<!--
+						<property name="tooltip" translatable="yes">URL of the file to download</property>
+						<property name="buffer">URL of file</property>
+						  -->
+					</object>
+		        </child>
+
+				<child>
+					<object class="GtkEntry" id="entry_2"/>
+					<!--
+                        <property name="buffer">URL of file</property>
+						  -->
+				</child>
+				
+			</object>
+		</child>
+		
+        <!--
+          Button : Download
           -->
 		
         <child>
-            <object class="GtkButton" id="button_1">
-                <property name="label">Button 1</property>
+            <object class="GtkButton" id="button_download">
+                <property name="label">Download</property>
                 <!--
                 <property name="use-action-appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                  -->
+				<signal name="clicked" handler="clicked_buttonDownload"/>
+				  -->
             </object>
         </child>
 
         <!--
-          Button :
+          Button : Clear URL
           -->
 		
         <child>
-            <object class="GtkButton" id="button_2">
-                <property name="label">Button 2</property>
+            <object class="GtkButton" id="button_clearURL">
+                <property name="label">Clear URL</property>
             </object>
         </child>
 
+		<!--
+          Button : Quit
+          -->
+		
         <child>
             <object class="GtkButton" id="button_quit">
                 <property name="label">Quit</property>
                 <!--
-                  -- Specify a signal handler for the specified signal.
-                  --
-                  -- If you specify a function to act as a signal handler,
-                  -- then the Gtk4 runtime might complain that it doesn't
-                  -- know about any function with that name.
+                  == Specify a signal handler for the specified signal.
+                  ==
+                  == If you specify a function to act as a signal handler,
+                  == then the Gtk4 runtime might complain that it doesn't
+                  == know about any function with that name.
                   -->
 				
                 <!--
@@ -48,15 +83,14 @@
             </object>
         </child>
 		
-        <!--
         <child>
 			<object class="GtkLabel" id="bottom_label">
                 <property name="label"
-                          bind-source="top_button"
+                          bind-source="button_download"
                           bind-property="label"
                           bind-flags="sync-create" />
             </object>
         </child>
-          -->
+
     </object>
 </interface>

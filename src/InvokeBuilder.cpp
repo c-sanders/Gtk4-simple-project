@@ -20,7 +20,23 @@ using std::ostringstream;
 
 // Declare global variables.
 
-bool   read_UI_directly_from_file = false;
+bool         read_UI_directly_from_file = false;
+
+const
+string       nameUIFile = "c:\\users\\craig\\Documents\\GitHub\\Gtk4-simple-project\\xml\\ui\\simple.ui";
+
+int          status = -1;
+
+string       xmlString;
+
+GtkBox     * widget_p;
+
+GSList     * list_p;
+
+GtkBuilder * builder_p = NULL;
+
+GtkWidget  * window_p,
+           * button_quit_p;
 
 
 /* GtkBuilder is defined as follows, in the file gtktypes.h;
@@ -83,30 +99,14 @@ functionHandler
 }
 
 
-static
 void
-activate
+createWindow
 (
- GtkApplication * app,
- gpointer         user_data
 )
 {
     const
-    string       nameFunction = "main",
-                 nF = nameFunction + " : ";
-
-    int          status = -1;
-
-    string       xmlString;
-
-    GtkBox     * widget_p;
-
-    GSList     * list_p;
-
-    GtkBuilder * builder_p = NULL;
-
-    GtkWidget  * window_p,
-               * button_quit_p;
+    string   nameFunction = "createWindow",
+             nF = nameFunction + " : ";
 
 
     cout << nF << "Enter" << endl;
@@ -116,9 +116,9 @@ activate
         // Create the builder by reading its description directly from a UI file.
 
         builder_p = gtk_builder_new_from_file
-                    (
-                     "c:\\users\\craig\\Documents\\GitHub\\Gtk4-simple-project\\xml\\ui\\simple.ui"
-                    );
+        (
+            nameUIFile.c_str()
+        );
     }
     else
     {
@@ -126,7 +126,7 @@ activate
 
         readWholeFileIntoString
         (
-            "c:\\users\\craig\\Documents\\GitHub\\Gtk4-simple-project\\xml\\ui\\simple.ui",
+            nameUIFile,
             &xmlString
         );
 
@@ -146,7 +146,7 @@ activate
     if (
         GTK_IS_BUILDER(builder_p) &&
         (builder_p != NULL)
-       )
+        )
     {
         cout << nF << "Is of type GtkBuilder" << endl;
     }
@@ -158,33 +158,61 @@ activate
 
         goto return_error_routine;
     }
-    
+
     // widget_p = builder_1_p->get_object("window1");
 
     widget_p = GTK_BOX
-               (
-                gtk_builder_get_object
-                (
-                 builder_p,
-                 "top_box_layout"
-                )
-               );
+    (
+        gtk_builder_get_object
+        (
+            builder_p,
+            "top_box_layout"
+        )
+    );
 
     button_quit_p = GTK_WIDGET
-                    (
-                     gtk_builder_get_object
-                     (
-                      builder_p,
-                      "button_quit"
-                     )
-                    );
+    (
+        gtk_builder_get_object
+        (
+            builder_p,
+            "button_quit"
+        )
+    );
 
-    cout << nF << "Typeid of widget_p = " << typeid(widget_p).name() << endl; 
+    cout << nF << "Typeid of widget_p = " << typeid(widget_p).name() << endl;
     cout << nF << "Typeid of button_quit_p = " << typeid(button_quit_p).name() << endl;
 
     list_p = gtk_builder_get_objects(builder_p);
 
     cout << nF << "Number of elements in list = " << g_slist_length(list_p) << endl;
+
+    goto return_routine;
+
+
+return_error_routine :
+
+
+return_routine :
+
+    cout << nF << "Enter" << endl;
+}
+
+static
+void
+activate
+(
+ GtkApplication * app,
+ gpointer         user_data
+)
+{
+    const
+    string       nameFunction = "main",
+                 nF = nameFunction + " : ";
+
+
+    cout << nF << "Enter" << endl;
+
+    createWindow();
 
     window_p = gtk_application_window_new(app);
     
