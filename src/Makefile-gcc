@@ -7,17 +7,13 @@
 #   - Compilation process
 # ======================================
 
-compiler=cl.exe
+compiler=c:\msys64\mingw64\bin\g++.exe 
 
-# /EHsc : Disable exception handling. The MS C/C++ Compiler complains is this is not used.   
-# /Fo   : Create an object file as output. 
+compile_flags=-g \
+              -Wall \
+              -c
 
-compile_flags=/c \
-              /EHsc \
-              /Fo
-
-compile_flags_advanced=$(compile_flags) \
-                       /Wall
+compile_flags_advanced=$(compile_flags)
 
 
 # ----------------------------
@@ -36,18 +32,18 @@ dir_gdk_pixbuf=c:\msys64\mingw64\include\gdk-pixbuf-2.0
 dir_json=c:\users\craig\json-develop\include
 dir_boost=c:\users\craig\boost_1_82_0
 
-include_dirs=/I..\include \
-             /I$(dir_gtk) \
-             /I$(dir_glib) \
-             /I$(dir_glib_include) \
-             /I$(dir_cairo) \
-             /I$(dir_pango) \
-             /I$(dir_graphene) \
-             /I$(dir_graphene_include) \
-             /I$(dir_harfbuzz) \
-             /I$(dir_gdk_pixbuf) \
-             /I$(dir_json) \
-             /I$(dir_boost)
+include_dirs=-I..\include \
+             -I$(dir_gtk) \
+             -I$(dir_glib) \
+             -I$(dir_glib_include) \
+             -I$(dir_cairo) \
+             -I$(dir_pango) \
+             -I$(dir_graphene) \
+             -I$(dir_graphene_include) \
+             -I$(dir_harfbuzz) \
+             -I$(dir_gdk_pixbuf) \
+             -I$(dir_json) \
+             -I$(dir_boost)
 
 
 # ======================================
@@ -61,38 +57,42 @@ include_dirs=/I..\include \
 #   pkg-config --libs gtk4
 # ======================================
 
-linker=link.exe
+linker=g++.exe
 
 # Library files
 
-lib_gtk=c:\msys64\mingw64\lib\libgtk-4.dll.a
-lib_glib=c:\msys64\mingw64\lib\libglib-2.0.dll.a
-lib_cairo=c:\msys64\mingw64\lib\libcairo.dll.a
-lib_cairo_gobject=c:\msys64\mingw64\lib\libcairo-gobject.dll.a
-lib_pango=c:\msys64\mingw64\lib\libpango-1.0.dll.a
-lib_pango_win32=c:\msys64\mingw64\lib\libpangowin32-1.0.dll.a
-lib_pango_cairo=c:\msys64\mingw64\lib\libpangocairo-1.0.dll.a
-lib_graphene=c:\msys64\mingw64\lib\libgraphene-1.0.dll.a
-lib_harfbuzz=c:\msys64\mingw64\lib\libharfbuzz.dll.a
+libdir_gtk=c:\msys64\mingw64\lib\
+libdir_boost=c:\users\craig\boost_1_82_0\stage\x64\lib\
+
+lib_gtk=gtk-4
+lib_glib=glib-2.0
+lib_cairo=cairo
+lib_cairo_gobject=cairo-gobject
+lib_pango=pango-1.0
+lib_pango_win32=pangowin32-1.0
+lib_pango_cairo=pangocairo-1.0
+lib_graphene=graphene-1.0
+lib_harfbuzz=harfbuzz
 # lib_pixbuf=c:\msys64\mingw64\lib\libharfbuzz.dll.a
-lib_gobject=c:\msys64\mingw64\lib\libgobject-2.0.dll.a
-lib_gio=c:\msys64\mingw64\lib\libgio-2.0.dll.a
+lib_gobject=gobject-2.0
+lib_gio=gio-2.0
+
 lib_boost_container=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_container-vc143-mt-s-x64-1_82.lib
 lib_boost_json=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_json-vc143-mt-s-x64-1_82.lib
 
-lib_files=$(lib_gtk) \
-          $(lib_glib) \
-          $(lib_cairo) \
-          $(lib_cairo_gobject) \
-          $(lib_pango) \
-          $(lib_pango_win32) \
-          $(lib_pango_cairo) \
-          $(lib_graphene) \
-          $(lib_harfbuzz) \
-          $(lib_gobject) \
-          $(lib_gio) \
-          $(lib_boost_container) \
-          $(lib_boost_json)
+lib_files=-L$(libdir_gtk) \
+          -L$(libdir_boost) \
+          -l$(lib_gtk) \
+          -l$(lib_glib) \
+          -l$(lib_cairo) \
+          -l$(lib_cairo_gobject) \
+          -l$(lib_pango) \
+          -l$(lib_pango_win32) \
+          -l$(lib_pango_cairo) \
+          -l$(lib_graphene) \
+          -l$(lib_harfbuzz) \
+          -l$(lib_gobject) \
+          -l$(lib_gio)
 
 # Is the Gtk4 library file : c:\msys64\mingw64\bin\libgtk-4-1.dll
 
@@ -101,8 +101,10 @@ lib_files=$(lib_gtk) \
 # File lists
 # ======================================
 
-InvokeBuilder_obj_files=InvokeBuilder.obj \
-                        FileUtils.obj
+InvokeBuilder_obj_files=InvokeBuilder.o \
+                        FileUtils.o
+
+MenuBar_obj_files=MenuBar.o
 
 link_flags=$(lib_files)
 
@@ -120,13 +122,16 @@ all: InvokeBuilder.exe
 #     $(compiler) $(compile_flags) $(include_dirs) InvokeBuilder.cpp
  
 
-.cpp.obj:
+.cpp.o:
     $(compiler) $(compile_flags) $(include_dirs) $*.cpp
 
 
 InvokeBuilder.exe : $(InvokeBuilder_obj_files)
-    $(linker) -out:InvokeBuilder.exe $(InvokeBuilder_obj_files) $(link_flags)
+    $(linker) $(InvokeBuilder_obj_files) $(link_flags) /o InvokeBuilder.exe
 
+
+MenuBar.exe : $(MenuBar_obj_files)
+    $(linker) $(InvokeBuilder_obj_files) $(link_flags) /o MenuBar.exe
 
 test:
     @echo ================================================================================
