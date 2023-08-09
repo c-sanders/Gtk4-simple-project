@@ -121,7 +121,7 @@ link_flags_advanced=$(link_flags)
 # Targets
 # ======================================
 
-all: InvokeBuilder.exe
+all: InvokeBuilder-ms.exe
 
 
 # InvokeBuilder.obj : InvokeBuilder.cpp
@@ -132,8 +132,8 @@ all: InvokeBuilder.exe
     $(compiler) $(compile_flags) $(include_dirs) $*.cpp
 
 
-InvokeBuilder.exe : $(InvokeBuilder_obj_files)
-    $(linker) -out:InvokeBuilder.exe $(InvokeBuilder_obj_files) $(link_flags)
+InvokeBuilder-ms.exe : $(InvokeBuilder_obj_files)
+    $(linker) -out:InvokeBuilder-ms.exe $(InvokeBuilder_obj_files) $(link_flags)
 
 
 test:

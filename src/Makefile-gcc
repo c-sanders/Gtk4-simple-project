@@ -7,6 +7,7 @@
 #   - Compilation process
 # ======================================
 
+# compiler=c:\cygwin64\bin\g++.exe
 compiler=c:\msys64\mingw64\bin\g++.exe 
 
 compile_flags=-g \
@@ -62,6 +63,7 @@ include_dirs=-I..\include \
 #   pkg-config --libs gtk4
 # ======================================
 
+# linker=c:\cygwin64\bin\ld.exe
 linker=c:\msys64\mingw64\bin\ld.exe
 
 
@@ -135,15 +137,15 @@ MenuBar_obj_files=MenuBar.o
 # Targets
 # ======================================
 
-all: InvokeBuilder.exe
+all: InvokeBuilder-gcc.exe
 
 
 .cpp.o:
     $(compiler) $(compile_flags) $(include_dirs) $*.cpp
 
 
-InvokeBuilder.exe : $(InvokeBuilder_obj_files)
-    $(linker) -o InvokeBuilder.exe $(InvokeBuilder_obj_files) $(link_flags)
+InvokeBuilder-gcc.exe : $(InvokeBuilder_obj_files)
+    $(linker) -o InvokeBuilder-gcc.exe $(InvokeBuilder_obj_files) $(link_flags)
 
 
 MenuBar.exe : $(MenuBar_obj_files)
