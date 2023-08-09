@@ -63,7 +63,10 @@ include_dirs=/I..\include \
 
 linker=link.exe
 
-# Library files
+
+# ----------------------------
+# Locations of Library files
+# ----------------------------
 
 lib_gtk=c:\msys64\mingw64\lib\libgtk-4.dll.a
 lib_glib=c:\msys64\mingw64\lib\libglib-2.0.dll.a
@@ -79,6 +82,11 @@ lib_gobject=c:\msys64\mingw64\lib\libgobject-2.0.dll.a
 lib_gio=c:\msys64\mingw64\lib\libgio-2.0.dll.a
 lib_boost_container=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_container-vc143-mt-s-x64-1_82.lib
 lib_boost_json=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_json-vc143-mt-s-x64-1_82.lib
+
+
+# ----------------------------
+# Library files
+# ----------------------------
 
 lib_files=$(lib_gtk) \
           $(lib_glib) \
@@ -133,14 +141,14 @@ test:
     @echo Locations of build tools
     @echo ------------------------
     @echo -
-    @echo cpp  = $(cpp)
-    @echo link = $(link)
+    @echo compiler = $(compiler)
+    @echo linker   = $(linker)
     @echo -
     @echo -
     @echo Various flags
     @echo -------------
     @echo -
-    @echo cppflags  = $(cppflags)
+    @echo compile_flags = $(compile_flags)
     @echo -
-    @echo linkflags = $(linkflags)
+    @echo link_flags    = $(link_flags)
     @echo ================================================================================

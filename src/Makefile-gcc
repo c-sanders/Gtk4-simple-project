@@ -164,5 +164,5 @@ test:
     @echo -
     @echo compile_flags  = $(compile_flags)
     @echo -
-    @echo link_flags = $(link_flags)
+    @echo link_flags     = $(link_flags)
     @echo ================================================================================
