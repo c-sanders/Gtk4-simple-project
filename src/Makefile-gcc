@@ -32,6 +32,11 @@ dir_gdk_pixbuf=c:\msys64\mingw64\include\gdk-pixbuf-2.0
 dir_json=c:\users\craig\json-develop\include
 dir_boost=c:\users\craig\boost_1_82_0
 
+
+# ----------------------------
+# Locations of Header files
+# ----------------------------
+
 include_dirs=-I..\include \
              -I$(dir_gtk) \
              -I$(dir_glib) \
@@ -57,12 +62,21 @@ include_dirs=-I..\include \
 #   pkg-config --libs gtk4
 # ======================================
 
-linker=g++.exe
+linker=c:\msys64\mingw64\bin\ld.exe
 
+
+# ----------------------------
+# Locations of Library files
+# ----------------------------
+
+libdir_c=c:\cygwin64\lib
+libdir_gtk=c:\msys64\mingw64\lib
+libdir_boost=c:\users\craig\boost_1_82_0\stage\x64\lib
+
+
+# ----------------------------
 # Library files
-
-libdir_gtk=c:\msys64\mingw64\lib\
-libdir_boost=c:\users\craig\boost_1_82_0\stage\x64\lib\
+# ----------------------------
 
 lib_gtk=gtk-4
 lib_glib=glib-2.0
@@ -80,8 +94,14 @@ lib_gio=gio-2.0
 lib_boost_container=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_container-vc143-mt-s-x64-1_82.lib
 lib_boost_json=c:\users\craig\boost_1_82_0\stage\x64\lib\libboost_json-vc143-mt-s-x64-1_82.lib
 
-lib_files=-L$(libdir_gtk) \
+lib_files=-L$(libdir_c) \
+          -L$(libdir_gtk) \
           -L$(libdir_boost) \
+          \
+          $(libdir_c)\crt0.o \
+          -lc \
+          -lstdc++ \
+          -lcygwin \
           -l$(lib_gtk) \
           -l$(lib_glib) \
           -l$(lib_cairo) \
@@ -96,6 +116,10 @@ lib_files=-L$(libdir_gtk) \
 
 # Is the Gtk4 library file : c:\msys64\mingw64\bin\libgtk-4-1.dll
 
+link_flags=$(lib_files)
+
+link_flags_advanced=$(link_flags)
+
 
 # ======================================
 # File lists
@@ -106,10 +130,6 @@ InvokeBuilder_obj_files=InvokeBuilder.o \
 
 MenuBar_obj_files=MenuBar.o
 
-link_flags=$(lib_files)
-
-link_flags_advanced=$(link_flags)
-
 
 # ======================================
 # Targets
@@ -118,34 +138,31 @@ link_flags_advanced=$(link_flags)
 all: InvokeBuilder.exe
 
 
-# InvokeBuilder.obj : InvokeBuilder.cpp
-#     $(compiler) $(compile_flags) $(include_dirs) InvokeBuilder.cpp
- 
-
 .cpp.o:
     $(compiler) $(compile_flags) $(include_dirs) $*.cpp
 
 
 InvokeBuilder.exe : $(InvokeBuilder_obj_files)
-    $(linker) $(InvokeBuilder_obj_files) $(link_flags) /o InvokeBuilder.exe
+    $(linker) -o InvokeBuilder.exe $(InvokeBuilder_obj_files) $(link_flags)
 
 
 MenuBar.exe : $(MenuBar_obj_files)
-    $(linker) $(InvokeBuilder_obj_files) $(link_flags) /o MenuBar.exe
+    $(linker) $(InvokeBuilder_obj_files) $(link_flags) -o MenuBar.exe
+
 
 test:
     @echo ================================================================================
     @echo Locations of build tools
     @echo ------------------------
     @echo -
-    @echo cpp  = $(cpp)
-    @echo link = $(link)
+    @echo compiler = $(compiler)
+    @echo linker   = $(linker)
     @echo -
     @echo -
     @echo Various flags
     @echo -------------
     @echo -
-    @echo cppflags  = $(cppflags)
+    @echo compile_flags  = $(compile_flags)
     @echo -
-    @echo linkflags = $(linkflags)
+    @echo link_flags = $(link_flags)
     @echo ================================================================================
