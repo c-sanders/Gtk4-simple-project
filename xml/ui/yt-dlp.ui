@@ -2,145 +2,303 @@
 
 
 <interface>
-	
-	<object class="GtkBox" id="top_box_layout">
-		<requires lib="gtk" version="4.0" />
-		<property name="orientation">vertical</property>
 
-		<child>
-			<object class="GtkNotebook" id="notebook">
+  <object class="GtkBox" id="top_box_layout">
+    <requires lib="gtk" version="4.0" />
+    <property name="orientation">vertical</property>
 
-				<!--
-				  Tab : General options
-				  -->
+    <child>
+      <object class="GtkNotebook" id="notebook">
 
-				<child>
+        <!--
+          Tab : General options
+		  
+		  TODO
+		  ====
+		  
+		  How to make the contents of the tab take up as much vertical space as
+		  possible? Where should this functionality go? Here, inside the
+		  vertical GtkBox, or where?
+          -->
+		  
+        <child>
 
-					<object class="GtkBox" id="tab_a_box_layout">
-						<property name="orientation">vertical</property>
+          <object class="GtkBox" id="tab_a_box_layout">
+            <property name="orientation">vertical</property>
 
-						<child>
-							<object class="GtkFrame" id="frame_tab_a">
-								<property name="label">--> General options</property>
+            <!-- Frane around the tab contents -->
 
-								<child>
-									<object class="GtkBox" id="tab_a_frame_box_layout">
-										<property name="orientation">vertical</property>
+			<child>
+			  <object class="GtkFrame" id="frame_tab_a">
+					  <property name="label">--> General options : (27 available)</property>
 
-										<!--
-								<child type="label">
-									<object class="GtkLabel" id="frame_label"/>
-								</child>
-								<child>
-									<object class="GtkEntry" id="frame_content"/>
-								</child>
-								  -->
+					  <child>
+						  <object class="GtkFrame" id="frame_tab_aa">
 
-										<child>
-											<object class="GtkCheckButton" id="button_Button_a">
-												<property name="label">-h, --help</property>
-											</object>
-										</child>
+							  <!-- Tab contents -->
+							  
+							  <!-- Layout for the tab contents
+							  
+							       child - object
+							    -->
 
+							  <child>
+								  <object class="GtkScrolledWindow">
+									  <property name="visible">True</property>
+									  <property name="can-focus">True</property>
+									  <!--
+									  <property name="vscrollbar-policy">external</property>
+									  <property name="shadow-type">in</property>
+									    -->
 
-										<child>
-											<object class="GtkCheckButton" id="button_Button_b">
-												<property name="label">--version</property>
-											</object>
-										</child>
-
-										<child>
-											<object class="GtkCheckButton" id="button_Button_c">
-												<property name="label">-U, --update</property>
-											</object>
-										</child>
-
-										<child>
-											<object class="GtkCheckButton" id="button_Button_d">
-												<property name="label">--no-update</property>
-											</object>
-								</child>
-
-								<child>
-									<object class="GtkCheckButton" id="button_Button_e">
-										<property name="label">--update-to [CHANNEL]@[TAG]</property>
-									</object>
-								</child>
-
-								<child>
-									<object class="GtkEntry" id="entry_update_to">
-										<property name="placeholder-text">[CHANNEL]@[TAG]</property>
-									</object>
-								</child>
+									  <!--
+									    TODO
+										====
 										
-								<child>
-									<object class="GtkCheckButton" id="button_Button_f">
-										<property name="label">-i, --ignore-errors</property>
-									</object>
-								</child>
+										Change the vertical Box layout to a Grid layout.
+									    -->
+									  
+									  <!-- Box Layout - vertical
+									  
+									       child - object
+									    -->
 
-								<child>
-									<object class="GtkCheckButton" id="button_Button_g">
-										<property name="label">--no-abort-on-error</property>
-									</object>
-								</child>
+									  <child>
+										  <object class="GtkBox" id="tab_poop_frame_box_layout">
+											  <property name="orientation">vertical</property>
 
-								<child>
-									<object class="GtkCheckButton" id="button_Button_h">
-										<property name="label">--abort-on-error</property>
-									</object>
-								</child>
+												  <child>
+													  <object class="GtkBox" id="fbl_tab_a_1">
+														  <property name="orientation">horizontal</property>
 
-								<child>
-									<object class="GtkCheckButton" id="button_Button_i">
-										<property name="label">--dump-user-agent</property>
-									</object>
-								</child>
+														  <child>
+															  <object class="GtkLabel" id="label_Button_a">
+																  <property name="label">01)</property>
+															  </object>
+														  </child>
 
-								<child>
-									<object class="GtkCheckButton" id="button_Button_j">
-										<property name="label">--list-extractors</property>
-									</object>
-								</child>
+														  <child>
+															  <object class="GtkCheckButton" id="button_Button_a">
+																  <property name="label">-h, --help</property>
+															  </object>
+														  </child>
+													  </object>
+												  </child>
 
-								<child>
-									<object class="GtkCheckButton" id="button_Button_k">
-										<property name="label">--extractor-descriptions</property>
-									</object>
-								</child>
+												  <!-- Begin : Box layout horizontal
+												  
+												       cild - object
+												    -->
 
-								<child>
-									<object class="GtkCheckButton" id="button_Button_l">
-										<property name="label">--use-extractors NAMES</property>
-									</object>
-								</child>
+												  <child>
+													  <object class="GtkBox" id="fbl_tab_a_2">
+														  <property name="orientation">horizontal</property>
 
-										<child>
-											<object class="GtkEntry" id="entry_use_extractors">
-												<property name="placeholder-text">NAMES</property>
-											</object>
-										</child>
-										
-								<child>
-									<object class="GtkCheckButton" id="button_Button_m">
-										<property name="label">--default-search PREFIX</property>
-									</object>
-								</child>
+														  <child>
+															  <object class="GtkLabel" id="label_Button_b">
+																  <property name="label">02)</property>
+															  </object>
+														  </child>
 
-								<child>
-									<object class="GtkEntry" id="entry_default_search">
-										<property name="placeholder-text">PREFIX</property>
-									</object>
-								</child>
-										
-								</object>
+														  <!-- Begin : Vertical array of widgets 
+														  
+														       child - object
+														    -->
 
-								</child>
-										
-							</object>
-							
-						</child>
-								
+														  <child>
+															  <object class="GtkBox" id="fbl_tab_a_2a">
+																  <property name="orientation">vertical</property>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_b">
+																		  <property name="label">--version</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_c">
+																		  <property name="label">-U, --update</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_d">
+																		  <property name="label">--no-update</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_e">
+																		  <property name="label">--update-to [CHANNEL]@[TAG]</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkEntry" id="entry_update_to">
+																		  <property name="placeholder-text">[CHANNEL]@[TAG]</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_f">
+																		  <property name="label">-i, --ignore-errors</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_g">
+																		  <property name="label">--no-abort-on-error</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_h">
+																		  <property name="label">--abort-on-error</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_i">
+																		  <property name="label">--dump-user-agent</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_j">
+																		  <property name="label">--list-extractors</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_k">
+																		  <property name="label">--extractor-descriptions</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_l">
+																		  <property name="label">--use-extractors NAMES</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkEntry" id="entry_use_extractors">
+																		  <property name="placeholder-text">NAMES</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_m">
+																		  <property name="label">--default-search PREFIX</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkEntry" id="entry_default_search">
+																		  <property name="placeholder-text">PREFIX</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_n">
+																		  <property name="label">--ignore-config</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_o">
+																		  <property name="label">--no-config-locations</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkBox" id="tab_afart_frame_box_layout">
+																		  <property name="orientation">horizontal</property>
+
+																		  <child>
+																			  <object class="GtkCheckButton" id="button_Button_p">
+																				  <property name="label">--config-locations PATH</property>
+																			  </object>
+																		  </child>
+
+																		  <child>
+																			  <object class="GtkEntry" id="entry_config_locations">
+																				  <property name="placeholder-text">PATH</property>
+																			  </object>
+																		  </child>
+
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_q">
+																		  <property name="label">--flat-playlist</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_r">
+																		  <property name="label">--no-flat-playlist</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_s">
+																		  <property name="label">--live-from-start</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_t">
+																		  <property name="label">--no-live-from-start</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_u">
+																		  <property name="label">--wait-for-video MIN[-MAX]</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_v">
+																		  <property name="label">--no-wait-for-video</property>
+																	  </object>
+																  </child>
+
+																  <child>
+																	  <object class="GtkCheckButton" id="button_Button_w">
+																		  <property name="label">--mark-watched</property>
+																	  </object>
+																  </child>
+
+															  </object>
+
+														  </child>
+
+														  <!-- End : Vertical array of widgets -->
+
+													  </object>
+												  </child>
+
+												  <!-- Begin : Box layout horizontal -->
+
+										  </object>
+									  </child>
+
+									  <!-- Box Layout - vertical -->
+
+								  </object>
+									  
+							  </child>
+
+							  <!-- Layout for the tab contents -->
+
+						  </object>
+
+					  </child>
+				  </object>
+			  </child>
 					</object>
 
 				</child>
@@ -156,13 +314,61 @@
 				  -->
 
 				<!-- Contents of the tab. -->
-				
+
 				<child>
-					<object class="GtkLabel" id="notebook-content-2">
-						<property name="label">Content of Tab : Network</property>
+
+					<object class="GtkBox" id="tab_b_box_layout">
+						<property name="orientation">vertical</property>
+
+						<child>
+							<object class="GtkFrame" id="frame_tab_b">
+								<property name="label">--> Network options : (6 available)</property>
+
+								<child>
+									<object class="GtkBox" id="tab_b_frame_box_layout">
+										<property name="orientation">vertical</property>
+
+										<child>
+											<object class="GtkCheckButton" id="button_Button_b_a">
+												<property name="label">--proxy</property>
+											</object>
+										</child>
+
+										<child>
+											<object class="GtkCheckButton" id="button_Button_b_b">
+												<property name="label">--socket-timeout</property>
+											</object>
+										</child>
+
+										<child>
+											<object class="GtkCheckButton" id="button_Button_b_c">
+												<property name="label">--source-address</property>
+											</object>
+										</child>
+
+										<child>
+											<object class="GtkCheckButton" id="button_Button_b_d">
+												<property name="label">-4, --force-ipv4</property>
+											</object>
+										</child>
+
+										<child>
+											<object class="GtkCheckButton" id="button_Button_b_e">
+												<property name="label">-6, --force-ipv6</property>
+											</object>
+										</child>
+
+										<child>
+											<object class="GtkCheckButton" id="button_Button_b_f">
+												<property name="label">--enable-file-urls</property>
+											</object>
+										</child>
+									</object>
+								</child>
+							</object>
+						</child>
 					</object>
 				</child>
-
 				<!-- Actual tab and its label within the tab bar.
 				
 				     This MUST come after the contents of the tab.
@@ -451,7 +657,7 @@
 
 		<child>
 			<object class="GtkButton" id="button_Download">
-				<property name="label">Download</property>
+				<property name="label">Run yt-dlp</property>
 			</object>
 		</child>
 		
