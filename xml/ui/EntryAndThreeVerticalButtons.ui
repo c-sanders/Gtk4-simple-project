@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<interface>
+  <requires lib="gtk" version="4.0"/>
+
+  <!-- Box layout - Vertical : Top level -->
+	
+  <object class="GtkBox" id="top_box_layout">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+
+	<!-- <Start Box Layout - Horizontal> : Entry 1 -->
+	  
+    <child>
+		
+      <object class="GtkBox" id="box_layout_0">
+        <property name="orientation">horizontal</property>
+        <property name="can-focus">True</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+
+        <!-- <Start Entry> : Entry 1 -->
+		  
+        <child>
+			
+          <object class="GtkEntry" id="entry_1">
+            <property name="width-request">150</property>
+            <property name="height-request">25</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+			  <layout>
+				  <property name="expand">False</property>
+				  <property name="fill">True</property>
+				  <property name="position">0</property>
+			  </layout>
+
+		  </object>
+
+        </child>
+
+        <!-- <End Button> : Button 1 -->
+		  
+      </object>
+
+	</child>
+		
+    <!-- <End Box Layout - Horizontal> : Button 1 -->
+
+	  
+	<!-- <Start Box Layout - Horizontal> : Button 1 -->
+	  
+    <child>
+		
+      <object class="GtkBox" id="box_layout_1">
+        <property name="orientation">horizontal</property>
+        <property name="can-focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+
+        <!-- <Start Button> : Button 1 -->
+		  
+        <child>
+			
+          <object class="GtkButton" id="button_1">
+            <property name="label">Clear URL</property>
+            <property name="width-request">150</property>
+            <property name="height-request">25</property>
+            <property name="can-focus">False</property>
+            <property name="receives-default">False</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+			  <layout>
+				  <property name="expand">False</property>
+				  <property name="fill">True</property>
+				  <property name="position">0</property>
+			  </layout>
+
+		  </object>
+
+        </child>
+
+        <!-- <End Button> : Button 1 -->
+		  
+      </object>
+
+	</child>
+		
+    <!-- <End Box Layout - Horizontal> : Button 1 -->
+
+	<!-- <Start Box Layout - Horizontal> : Button 2 -->
+	  
+    <child>
+		
+      <object class="GtkBox" id="box_layout_2">
+        <property name="orientation">horizontal</property>
+        <property name="can-focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+
+        <!-- <Start Button> : Button 2 -->
+		  
+        <child>
+			
+          <object class="GtkButton" id="button_2">
+            <property name="label">Download</property>
+            <property name="width-request">150</property>
+            <property name="height-request">25</property>
+            <property name="can-focus">False</property>
+            <property name="receives-default">False</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+		  </object>
+
+        </child>
+
+        <!-- <End Button> : Button 2 -->
+		  
+      </object>
+		
+	</child>
+
+    <!-- <End Box Layout - Horizontal> : Button 2 -->
+
+	<!-- <Start Box Layout - Horizontal> : Button 3 -->
+	  
+    <child>
+		
+      <object class="GtkBox" id="box_layout_3">
+        <property name="orientation">horizontal</property>
+        <property name="can-focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+
+        <!-- <Start Button> : Button 3 -->
+		  
+        <child>
+			
+          <object class="GtkButton" id="button_3">
+            <property name="label">Quit</property>
+            <property name="width-request">150</property>
+            <property name="height-request">25</property>
+            <property name="can-focus">False</property>
+            <property name="receives-default">False</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+		  </object>
+
+        </child>
+
+        <!-- <End Button> : Button 3 -->
+		  
+      </object>
+		
+	</child>
+
+    <!-- <End Box Layout - Horizontal> : Button 3 -->
+	  
+  </object>
+</interface>
