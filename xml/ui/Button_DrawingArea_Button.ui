@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<interface>
+  <requires lib="gtk" version="4.0"/>
+	  
+  <!-- 30 Aug, 2023
+	== ============
+	==
+	== This UI (User Interface) file works.
+    -->
+	
+  <!-- Start : Element 1 -->
+
+  <object class="GtkBox" id="box_layout_vertical">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+
+    <child>
+
+      <!-- Start : Element 2 -->
+
+      <object class="GtkButton" id="button_1">
+        <property name="label">Button 1</property>
+        <property name="width-request">150</property>
+        <property name="height-request">25</property>
+        <property name="can-focus">False</property>
+        <property name="receives-default">False</property>
+        <property name="margin-top">5</property>
+		<property name="margin-bottom">5</property>
+        <property name="margin-start">5</property>
+        <property name="margin-end">5</property>
+        <property name="tooltip-text" translatable="yes">This button has been centred within two layouts.</property>
+      </object>		
+
+      <!-- End : Element 2 -->
+
+    </child>
+
+    <child>
+
+      <!-- Start : Element 3 -->
+
+      <object class="GtkDrawingArea" id="drawingArea">
+        <property name="width-request">150</property>
+        <property name="height-request">150</property>
+        <property name="content-height">150</property>
+        <property name="content-width">150</property>
+		<property name="can-focus">False</property>
+      </object>
+
+      <!-- End : Element 3 -->
+
+	</child>
+
+    <child>
+
+      <!-- Start : Element 4 -->
+
+      <object class="GtkButton" id="button_2">
+        <property name="label">Button 2</property>
+        <property name="width-request">150</property>
+        <property name="height-request">25</property>
+        <property name="can-focus">False</property>
+        <property name="receives-default">False</property>
+        <property name="margin-top">5</property>
+        <property name="margin-bottom">5</property>
+        <property name="margin-start">5</property>
+        <property name="margin-end">5</property>
+        <property name="tooltip-text" translatable="yes">This button has been centred within two layouts.</property>
+
+      </object>
+
+      <!-- End : Element 4 -->
+
+    </child>
+		  
+  </object>
+	
+  <!-- End : Element 1 -->
+	
+</interface>
