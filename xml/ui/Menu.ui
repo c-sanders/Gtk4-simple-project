@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<interface>
+  <requires lib="gtk" version="4.0"/>
+
+  <!-- Start : Element 1
+    ==
+    == 29 Aug, 2023
+	== ============
+	==
+	== This menu works.
+    -->
+	
+  <menu id='menubar'>
+    <submenu>
+      <attribute name='label' translatable='yes'>_Edit</attribute>
+        <item>
+          <attribute name='label' translatable='yes'>_Copy</attribute>
+          <attribute name='action'>win.copy</attribute>
+        </item>
+        <item>
+          <attribute name='label' translatable='yes'>_Paste</attribute>
+          <attribute name='action'>win.paste</attribute>
+        </item>
+    </submenu>
+  </menu>
+
+  <!-- End : Element 1 -->
+	
+</interface>
