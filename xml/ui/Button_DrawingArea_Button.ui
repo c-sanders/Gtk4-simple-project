@@ -33,7 +33,7 @@
         <property name="margin-bottom">5</property>
         <property name="margin-start">5</property>
         <property name="margin-end">5</property>
-        <property name="tooltip-text" translatable="yes">This button has been centred within two layouts.</property>
+        <property name="tooltip-text" translatable="yes">This is the Tooltip text for Button 1.</property>
       </object>		
 
       <!-- End : Element 2 -->
@@ -42,14 +42,38 @@
 
     <child>
 
+      <object class="GtkLabel" id="label_drawingArea">
+        <property name="label">Gtk Drawing Area</property>
+      </object>
+		
+    </child>
+	  
+	<child>
+
       <!-- Start : Element 3 -->
 
-      <object class="GtkDrawingArea" id="drawingArea">
-        <property name="width-request">150</property>
-        <property name="height-request">150</property>
-        <property name="content-height">150</property>
-        <property name="content-width">150</property>
-        <property name="can-focus">False</property>
+      <object class="GtkFrame" id="frame_drawingArea">
+        <property name="margin-top">5</property>
+		<property name="margin-bottom">5</property>
+		<property name="margin-start">5</property>
+		<property name="margin-end">5</property>
+
+		<child>
+			  
+          <!-- Start : Element 4 -->
+		  
+          <object class="GtkDrawingArea" id="drawingArea">
+            <property name="width-request">150</property>
+            <property name="height-request">150</property>
+            <property name="content-height">150</property>
+            <property name="content-width">150</property>
+            <property name="can-focus">False</property>
+          </object>
+
+          <!-- End : Element 4 -->
+			  
+        </child>
+		  
       </object>
 
       <!-- End : Element 3 -->
@@ -58,7 +82,7 @@
 
     <child>
 
-      <!-- Start : Element 4 -->
+      <!-- Start : Element 5 -->
 
       <object class="GtkButton" id="button_2">
         <property name="label">Button 2</property>
@@ -70,11 +94,10 @@
         <property name="margin-bottom">5</property>
         <property name="margin-start">5</property>
         <property name="margin-end">5</property>
-        <property name="tooltip-text" translatable="yes">This button has been centred within two layouts.</property>
-
+        <property name="tooltip-text" translatable="yes">This is the Tooltip text for Button 2.</property>
       </object>
 
-      <!-- End : Element 4 -->
+      <!-- End : Element 5 -->
 
     </child>
 		  
