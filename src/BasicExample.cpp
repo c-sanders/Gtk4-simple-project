@@ -32,6 +32,19 @@ activate
 );
 
 
+int
+createAndConfigureMouseButtonEventController
+(
+ GtkEventController * eventController_p,
+ int                  mouseButtonNumber,
+ const
+ string               gestureDescription,
+ GtkWidget          * associatedWidget_p,
+ const
+ string               eventType
+);
+
+
 static
 void
 slot_mouseButtonAction
@@ -163,110 +176,43 @@ activate
      200
     );
 
-    // -------------------------------------------------------------------------
-    // Can multiple gestures be associated with the same Widget?
-    // 
-    // For example, is it possible to associate a left mouse button click
-    // gesture and a right mouse button click gesture with the same widget? 
-    // -------------------------------------------------------------------------
-
     // Create a Controller and associate it with the Button widget.
     //
     // This Controller should handle any right mouse button clicks which are
     // performed on the Button widget.
 
-    // What type of Controller should be created?
-    //
-    //   - GtkEventControllerKey
-    //   - GtkPadController
-    //
-    // Or doesn't it even matter? How about GtkGestureSingle?
-    //
-    // Refer to;
-    //
-    //   https://discourse.gnome.org/t/how-to-claim-right-click-gestures-released-event-in-gtk4/4194/4
+    gesture_right_mouse_button_click_EventController_p = GTK_EVENT_CONTROLLER
+                                                         (
+                                                          gtk_gesture_click_new()
+                                                         );
 
-    {
-        gesture_right_mouse_button_click_EventController_p = GTK_EVENT_CONTROLLER
-        (
-         gtk_gesture_click_new()
-        );
-
-        // Instruct the Event Controller to only capture right mouse button clicks.
-        // The number 3 denotes the right mouse button.
-
-        gtk_gesture_single_set_button
-        (
-            GTK_GESTURE_SINGLE(gesture_right_mouse_button_click_EventController_p),
-            3
-        );
-
-        gtk_event_controller_set_name
-        (
-            gesture_right_mouse_button_click_EventController_p,
-            "Event Controller : Right Mouse Button clicked"
-        );
-
-        gtk_widget_add_controller
-        (
-            drawingArea_p,
-            gesture_right_mouse_button_click_EventController_p
-        );
-
-        // Can use   : pressed, released
-        // Can't use : clicked
-
-        g_signal_connect
-        (
-            gesture_right_mouse_button_click_EventController_p,
-            "released",
-            G_CALLBACK(slot_mouseButtonAction),
-            gesture_right_mouse_button_click_EventController_p
-        );
-    }
+    createAndConfigureMouseButtonEventController
+    (
+     gesture_right_mouse_button_click_EventController_p,
+     3,
+     "Event Controller : Right Mouse Button clicked",
+     drawingArea_p,
+     "pressed"
+    );
 
     // Create another Controller and also associate it with the Button widget.
     //
     // This Controller should handle any left mouse button clicks which are
     // performed on the Button widget.
 
-    {
-        gesture_left_mouse_button_click_EventController_p = GTK_EVENT_CONTROLLER
-        (
-            gtk_gesture_click_new()
-        );
+    gesture_left_mouse_button_click_EventController_p = GTK_EVENT_CONTROLLER
+                                                        (
+                                                         gtk_gesture_click_new()
+                                                        );
 
-        // Instruct the Event Controller to only capture left mouse button clicks.
-        // The number 1 denotes the left mouse button.
-
-        gtk_event_controller_set_name
-        (
-            gesture_left_mouse_button_click_EventController_p,
-            "Event Controller : Left Mouse Button clicked"
-        );
-
-        gtk_gesture_single_set_button
-        (
-            GTK_GESTURE_SINGLE(gesture_left_mouse_button_click_EventController_p),
-            1
-        );
-
-        gtk_widget_add_controller
-        (
-            drawingArea_p,
-            gesture_left_mouse_button_click_EventController_p
-        );
-
-        /*
-        g_signal_connect
-        (
-         gesture_left_mouse_button_click_EventController_p,
-         "released",
-         G_CALLBACK(slot_mouseButtonAction),
-         gesture_left_mouse_button_click_EventController_p
-        );
-         */
-    }
+    createAndConfigureMouseButtonEventController
+    (
+     gesture_left_mouse_button_click_EventController_p,
+     1,
+     "Event Controller : Left Mouse Button clicked",
+     drawingArea_p,
+     "pressed"
+    );
 
     g_signal_connect
     (
@@ -287,6 +233,81 @@ activate
     // Does gtk_widget_set_visible need to be invoked at this point? 
 
     gtk_widget_show(window_p);
+}
+
+
+// -------------------------------------------------------------------------
+// Can multiple gestures be associated with the same Widget?
+// 
+// For example, is it possible to associate a left mouse button click
+// gesture and a right mouse button click gesture with the same widget? 
+// -------------------------------------------------------------------------
+
+// What type of Controller should be created?
+//
+//   - GtkEventControllerKey
+//   - GtkPadController
+//
+// Or doesn't it even matter? How about GtkGestureSingle?
+//
+// Refer to;
+//
+//   https://discourse.gnome.org/t/how-to-claim-right-click-gestures-released-event-in-gtk4/4194/4
+
+int
+createAndConfigureMouseButtonEventController
+(
+ GtkEventController * eventController_p,
+ int                  mouseButtonNumber,
+ const
+ string               gestureDescription,
+ GtkWidget          * associatedWidget_p,
+ const
+ string               eventType
+)
+{
+    const
+    string   nameFunction = "createAndConfigureMouseButtonEventController",
+             nF           = nameFunction + " : ";
+
+
+    // Instruct the Event Controller to only capture right mouse button clicks.
+    // The number 3 denotes the right mouse button.
+
+    cout << nF << "About to associate a button with the Event Controller" << endl;
+
+    gtk_gesture_single_set_button
+    (
+     GTK_GESTURE_SINGLE(eventController_p),
+     mouseButtonNumber
+    );
+
+    cout << nF << "Have associated a button with the Event Controller" << endl;
+
+    gtk_event_controller_set_name
+    (
+     eventController_p,
+     gestureDescription.c_str()
+    );
+
+    gtk_widget_add_controller
+    (
+     associatedWidget_p,
+     eventController_p
+    );
+
+    // Can use   : pressed, released
+    // Can't use : clicked
+
+    g_signal_connect
+    (
+     eventController_p,
+     eventType.c_str(),
+     G_CALLBACK(slot_mouseButtonAction),
+     NULL
+    );
+
+    return 0;
 }
 
 
